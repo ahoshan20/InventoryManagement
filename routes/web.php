@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminManagementController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
@@ -11,11 +12,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::group(['middleware' => 'auth', 'prefix' => 'admin-dashboard'], function () {
 
-Route::group(['middleware' => 'auth', 'prefix'=> 'admin'], function () {
-    
-    Route::get('/dashboard',[DashboardController::class,'dashboard'])->name('admin.dashboard');
+    Route::get('/', [DashboardController::class, 'dashboard'])->name('admin.dashboard');
 
-    // Admin Mabagement
-    // Route::group(['as' => 'am','prefix'=> 'admin-management'], function () {});
+    Route::resource('/admin', AdminManagementController::class);
+
+    // Admin Mabagement Route
 });

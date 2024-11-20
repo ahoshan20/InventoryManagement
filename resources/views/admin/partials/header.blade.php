@@ -22,7 +22,7 @@
   </div>
   <!-- Navbar Header -->
   <nav class="navbar navbar-header navbar-header-transparent navbar-expand-lg border-bottom">
-    <div class="container-fluid">
+    <div class="container">
       <nav class="navbar navbar-header-left navbar-expand-lg navbar-form nav-search p-0 d-none d-lg-flex">
         <div class="input-group">
           <div class="input-group-prepend">
@@ -303,7 +303,7 @@
             </div>
             <span class="profile-username">
               <span class="op-7">Hi,</span>
-              <span class="fw-bold">Hizrian</span>
+              <span class="fw-bold">{{auth()->user()->name}}</span>
             </span>
           </a>
           <ul class="dropdown-menu dropdown-user animated fadeIn">
