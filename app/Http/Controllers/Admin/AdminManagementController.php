@@ -3,16 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
-use View;
+use Illuminate\View\View;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class AdminManagementController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index() 
+    public function index()
     {
         $data["admins"] = User::latest()->get();
         return view("admin/admin_management/index", $data);
@@ -21,7 +22,7 @@ class AdminManagementController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
         return view("admin/admin_management/create");
     }
@@ -29,13 +30,13 @@ class AdminManagementController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(AdminRequest $request): RedirectResponse
     {
-        $admin = new User();
-        $admin->name = $request->name;
-        $admin->email = $request->email;
-        $admin->password =($request->password);
-        $admin->save();
+        $new_admin = new User();
+        $new_admin->name = $request->name;
+        $new_admin->email = $request->email;
+        $new_admin->password = $request->password;
+        $new_admin->save();
         return redirect()->route("admin.index");
     }
 
@@ -50,17 +51,27 @@ class AdminManagementController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id): View
     {
-        //
+        $data["admin"] = User::findOrFail(decrypt($id));
+        return view("admin/admin_management/edit", $data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(AdminRequest $request, string $id)
     {
-        //
+
+        $new_admin = User::findOrFail(decrypt($id));
+        $new_admin->name = $request->name;
+        $new_admin->email = $request->email;
+        if ($request->password) {
+            $new_admin->password = $request->password;
+        }
+
+        $new_admin->update();
+        return redirect()->route(route: "admin.index");
     }
 
     /**
@@ -68,6 +79,8 @@ class AdminManagementController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $new_admin = User::findOrFail(decrypt($id));
+        $new_admin->delete();
+        return redirect()->route(route: "admin.index");
     }
 }

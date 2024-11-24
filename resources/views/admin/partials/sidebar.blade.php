@@ -31,7 +31,7 @@
         </li>
         <li class="nav-item {{$page_slug == 'admin' ? 'active' : ''}}">
           <a href="{{route('admin.index')}}">
-          <i class="icon-home"></i>
+          <i class="fab fa-readme"></i>
             <p>{{__('Admin Management')}}</p>
           </a>
         </li>

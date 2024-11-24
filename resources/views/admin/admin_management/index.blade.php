@@ -41,13 +41,20 @@
 										</a>
 										<ul class="dropdown-menu dropdown-menu-end">
 											<li>
-												<a href="#" class="dropdown-item">Edit</a>
+												<a href="{{route('admin.edit', encrypt($admin->id))}}" class="dropdown-item">Edit</a>
 											</li>
 											<li>
-												<a href="#" class="dropdown-item">Delete</a>
+												<a href="#" class="dropdown-item">Stutas Update</a>
 											</li>
 											<li>
-												<a href="#" class="dropdown-item">Update</a>
+												<a href="javascript:void(0)" class="dropdown-item"
+												onclick='document.getElementById("delete_form{{$loop->iteration}}").submit()'>Delete</a>
+
+												<form id="delete_form{{$loop->iteration}}"
+												 action="{{route('admin.destroy',encrypt($admin->id))}}" method="POST" class="d-none">
+													@csrf
+													@method('DELETE')
+												</form>
 											</li>
 										</ul>
 									</div>
