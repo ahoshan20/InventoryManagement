@@ -36,7 +36,7 @@ class AdminRequest extends FormRequest
     protected function update(): array
     {
         return [
-            "email" => "required|email|unique:users,email," . decrypt($this->route("Admin")),
+            "email" => "required|email|unique:users,email," . decrypt($this->route("admin")),
             "password" => "nullable|string|min:8|confirmed"
         ];
     }
