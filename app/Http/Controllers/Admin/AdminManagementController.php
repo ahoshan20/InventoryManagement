@@ -15,7 +15,7 @@ class AdminManagementController extends Controller
      */
     public function index()
     {
-        $data["admins"] = User::latest()->get();
+        $data["admins"] = User::with(['creater'])->latest()->get();
         return view("admin/admin_management/index", $data);
     }
 
@@ -36,6 +36,7 @@ class AdminManagementController extends Controller
         $new_admin->name = $request->name;
         $new_admin->email = $request->email;
         $new_admin->password = $request->password;
+        $new_admin->created_by =auth()->user()->id;
         $new_admin->save();
         return redirect()->route("admin.index");
     }
@@ -60,7 +61,7 @@ class AdminManagementController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(AdminRequest $request, string $id)
+    public function update(AdminRequest $request,  $id)
     {
 
         $new_admin = User::findOrFail(decrypt($id));
@@ -70,7 +71,7 @@ class AdminManagementController extends Controller
             $new_admin->password = $request->password;
         }
 
-        $new_admin->update();
+        $new_admin->save();
         return redirect()->route(route: "admin.index");
     }
 

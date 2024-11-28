@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'status',
     ];
 
     /**
@@ -44,5 +45,53 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+    public function creater()
+    {
+        return $this->belongsTo(user::class, 'created_by', 'id');
+    }
+    public function updater()
+    {
+        return $this->belongsTo(user::class, 'updated_by', 'id');
+    }
+    public function deleter()
+    {
+        return $this->belongsTo(user::class, 'deleted_by', 'id');
+    }
+    public function getStatus()
+    {
+        switch ($this->status) {
+            case '1':
+                return 'Active';
+            case '2':
+                return 'Deactive';
+        }
+    }
+    public function getStatusClass()
+    {
+        switch ($this->status) {
+            case '1':
+                return 'badge bg-success';
+            case '0':
+                return 'badge bg-danger';
+        }
+    }
+    public function getStatusTitle()
+    {
+        switch ($this->status) {
+            case '1':
+                return 'Deactive';
+            case '0':
+                return 'Active';
+        }
+    }
+    public function getTitleClass()
+    {
+        switch ($this->status) {
+            case '1':
+                return 'badge bg-danger';
+            case '0':
+                return 'badge bg-success';
+        }
     }
 }

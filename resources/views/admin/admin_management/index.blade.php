@@ -8,7 +8,7 @@
 				<h4 class="card-title">{{__('Admin List')}}</h4>
 				<a href="{{route('admin.create')}}" class="btn btm-sm btn-primary">{{__('Add Admin')}}</a>
 			</div>
-			
+
 			<div class="card-body">
 				<table class="table table-striped">
 					<thead>
@@ -16,8 +16,9 @@
 							<th>{{__('SL')}}</th>
 							<th>{{__('Name')}}</th>
 							<th>{{__('Email')}}</th>
+							<th>{{__('Status')}}</th>
 							<th>{{__('Created At')}}</th>
-							<th>{{__('Updated At')}}</th>
+							<th>{{__('Created_by')}}</th>
 							<th>{{__('Active')}}</th>
 						</tr>
 					</thead>
@@ -27,9 +28,9 @@
 								<td>{{$loop->iteration}}</td>
 								<td>{{$admin->name}}</td>
 								<td>{{$admin->email}}</td>
+								<td><span class="{{$admin->getStatusClass()}}">{{$admin->getStatus()}}</span></td>
 								<td>{{date('d, M, Y', strtotime($admin->created_at))}}</td>
-								<td> {{$admin->created_at != $admin->updated_at ? date('d, M, Y', strtotime($admin->update)) : 'Null'}}
-								</td>
+								<td>{{$admin->creater ? $admin->creater->name : 'System'}}</td>
 								<td>
 									<div class="btn-group d-flex align-items-center gap-3 flex-wrap">
 										<a href="javascript:void(0)"
@@ -41,17 +42,22 @@
 										</a>
 										<ul class="dropdown-menu dropdown-menu-end">
 											<li>
-												<a href="{{route('admin.edit', encrypt($admin->id))}}" class="dropdown-item">Edit</a>
+												<a href="{{route('admin.edit', encrypt($admin->id))}}"
+													class="dropdown-item">Edit</a>
 											</li>
 											<li>
-												<a href="#" class="dropdown-item">Stutas Update</a>
+												<a href="javascript:void(0)"
+													class="dropdown-item {{$admin->getTitleClass()}}">
+													<span>{{$admin->getStatusTitle()}}</span>
+												</a>
 											</li>
 											<li>
 												<a href="javascript:void(0)" class="dropdown-item"
-												onclick='document.getElementById("delete_form{{$loop->iteration}}").submit()'>Delete</a>
+													onclick='document.getElementById("delete_form{{$loop->iteration}}").submit()'>Delete</a>
 
 												<form id="delete_form{{$loop->iteration}}"
-												 action="{{route('admin.destroy',encrypt($admin->id))}}" method="POST" class="d-none">
+													action="{{route('admin.destroy', encrypt($admin->id))}}" method="POST"
+													class="d-none">
 													@csrf
 													@method('DELETE')
 												</form>
