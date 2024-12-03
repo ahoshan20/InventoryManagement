@@ -63,7 +63,7 @@ class User extends Authenticatable
         switch ($this->status) {
             case '1':
                 return 'Active';
-            case '2':
+            case '0':
                 return 'Deactive';
         }
     }
@@ -83,15 +83,6 @@ class User extends Authenticatable
                 return 'Deactive';
             case '0':
                 return 'Active';
-        }
-    }
-    public function getTitleClass()
-    {
-        switch ($this->status) {
-            case '1':
-                return 'badge bg-danger';
-            case '0':
-                return 'badge bg-success';
         }
     }
 }

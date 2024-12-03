@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminRequest;
 use App\Models\User;
+use Auth;
 use Illuminate\View\View;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
@@ -83,5 +84,14 @@ class AdminManagementController extends Controller
         $new_admin = User::findOrFail(decrypt($id));
         $new_admin->delete();
         return redirect()->route(route: "admin.index");
+    }
+
+    public function status(string $id)
+    {
+        $admin = User::findOrFail(decrypt($id));
+        $admin->status = !$admin->status;
+        $admin->updated_by = Auth::user()->id;
+        $admin->update();
+        return redirect()->route(route:"admin.index");
     }
 }

@@ -46,8 +46,8 @@
 													class="dropdown-item">Edit</a>
 											</li>
 											<li>
-												<a href="javascript:void(0)"
-													class="dropdown-item {{$admin->getTitleClass()}}">
+												<a href="{{route("admin.status", encrypt($admin->id))}}"
+													class="dropdown-item">
 													<span>{{$admin->getStatusTitle()}}</span>
 												</a>
 											</li>

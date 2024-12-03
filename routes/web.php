@@ -19,4 +19,5 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin-dashboard'], function (
     Route::resource('/admin', AdminManagementController::class);
 
     // Admin Mabagement Route
+    Route::get('/admin/status/{id}',[AdminManagementController::class,'status'])->name('admin.status');
 });
