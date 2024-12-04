@@ -39,6 +39,7 @@ class AdminManagementController extends Controller
         $new_admin->password = $request->password;
         $new_admin->created_by =auth()->user()->id;
         $new_admin->save();
+        session()->flash("success","Admin created successfully");
         return redirect()->route("admin.index");
     }
 
@@ -73,6 +74,7 @@ class AdminManagementController extends Controller
         }
 
         $new_admin->save();
+        session()->flash("success","Admin updated successfully");
         return redirect()->route(route: "admin.index");
     }
 
@@ -83,6 +85,7 @@ class AdminManagementController extends Controller
     {
         $new_admin = User::findOrFail(decrypt($id));
         $new_admin->delete();
+        session()->flash("success","Admin deleted successfully");
         return redirect()->route(route: "admin.index");
     }
 
@@ -92,6 +95,7 @@ class AdminManagementController extends Controller
         $admin->status = !$admin->status;
         $admin->updated_by = Auth::user()->id;
         $admin->update();
+        session()->flash("success","Admin status changed successfully");
         return redirect()->route(route:"admin.index");
     }
 }

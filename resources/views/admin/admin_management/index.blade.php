@@ -53,7 +53,7 @@
 											</li>
 											<li>
 												<a href="javascript:void(0)" class="dropdown-item"
-													onclick='document.getElementById("delete_form{{$loop->iteration}}").submit()'>Delete</a>
+													onclick='confirmationAlert(()=> document.getElementById("delete_form{{$loop->iteration}}").submit())'>Delete</a>
 
 												<form id="delete_form{{$loop->iteration}}"
 													action="{{route('admin.destroy', encrypt($admin->id))}}" method="POST"
