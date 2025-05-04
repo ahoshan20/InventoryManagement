@@ -14,6 +14,7 @@
   <link rel="dns-prefetch" href="//fonts.bunny.net">
   <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
   <link rel="icon" href="{{asset('admin/assets/img/kaiadmin/favicon.ico')}}" type="image/x-icon" />
+  <script src="https://js.pusher.com/8.4.0/pusher.min.js"></script>
 
   <!-- Fonts and icons -->
   <script src="{{asset('admin/assets/js/plugin/webfont/webfont.min.js')}}"></script>
@@ -83,6 +84,23 @@
   <script src="{{asset('admin/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js')}}"></script>
   <!-- Kaiadmin JS -->
   <script src="{{asset('admin/assets/js/kaiadmin.min.js')}}"></script>
+  {{-- echo jss link --}}
+  <script src="{{asset('admin/assets/js/setting-demo.js')}}"></script>
+  <script src="https://js.pusher.com/8.4.0/pusher.min.js"></script>
+  <script>
+
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('f2815289d78f5576ade3', {
+      cluster: 'ap2'
+    });
+
+    var channel = pusher.subscribe('my-channel');
+    channel.bind('my-event', function(data) {
+      alert(JSON.stringify(data));
+    });
+  </script>
 </body>
 
 </html>

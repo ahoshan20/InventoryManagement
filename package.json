@@ -18,6 +18,14 @@
         "vite": "^5.0"
     },
     "dependencies": {
+        "datatables.net-autofill-dt": "^2.7.0",
+        "datatables.net-buttons-dt": "^3.2.2",
+        "datatables.net-dt": "^2.2.2",
+        "jquery": "^3.7.1",
+        "laravel-echo": "^2.0.2",
+        "pdfmake": "^0.2.18",
+        "pusher": "^5.2.0",
+        "pusher-js": "^8.4.0",
         "sweetalert2": "^11.14.5"
     }
 }
