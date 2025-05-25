@@ -14,6 +14,8 @@
   <link rel="dns-prefetch" href="//fonts.bunny.net">
   <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
   <link rel="icon" href="{{asset('admin/assets/img/kaiadmin/favicon.ico')}}" type="image/x-icon" />
+  <link rel="stylesheet" href="{{asset('admin/DataTables/datatables.css')}}">
+  <link rel="stylesheet" href="{{asset('admin/DataTables/datatables.min.css')}}">
 
   <!-- Fonts and icons -->
   <script src="{{asset('admin/assets/js/plugin/webfont/webfont.min.js')}}"></script>
@@ -81,8 +83,12 @@
   <script src="{{asset('admin/assets/js/core/jquery-3.7.1.min.js')}}"></script>
   <!-- jQuery Scrollbar -->
   <script src="{{asset('admin/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js')}}"></script>
+  {{-- Datatable --}}
+  <script src="{{asset('admin/DataTables/datatables.js')}}"></script>
+  <script src="{{asset('admin/DataTables/datatables.min.js')}}"></script>
   <!-- Kaiadmin JS -->
   <script src="{{asset('admin/assets/js/kaiadmin.min.js')}}"></script>
+  @stack('js')
 </body>
 
 </html>
