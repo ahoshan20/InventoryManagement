@@ -16,6 +16,7 @@
   <link rel="icon" href="{{asset('admin/assets/img/kaiadmin/favicon.ico')}}" type="image/x-icon" />
   <link rel="stylesheet" href="{{asset('admin/DataTables/datatables.css')}}">
   <link rel="stylesheet" href="{{asset('admin/DataTables/datatables.min.css')}}">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.2.3/css/buttons.dataTables.css">
 
   <!-- Fonts and icons -->
   <script src="{{asset('admin/assets/js/plugin/webfont/webfont.min.js')}}"></script>
@@ -86,6 +87,30 @@
   {{-- Datatable --}}
   <script src="{{asset('admin/DataTables/datatables.js')}}"></script>
   <script src="{{asset('admin/DataTables/datatables.min.js')}}"></script>
+
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+<!-- DataTables core -->
+<script src="https://cdn.datatables.net/2.3.1/js/dataTables.js"></script>
+
+<!-- DataTables Buttons -->
+<script src="https://cdn.datatables.net/buttons/3.2.3/js/dataTables.buttons.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.2.3/js/buttons.dataTables.js"></script>
+
+<!-- JSZip for Excel export -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+<!-- pdfmake for PDF export -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+
+<!-- HTML5 and Print buttons -->
+<script src="https://cdn.datatables.net/buttons/3.2.3/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.2.3/js/buttons.print.min.js"></script>
+
+
+
   <!-- Kaiadmin JS -->
   <script src="{{asset('admin/assets/js/kaiadmin.min.js')}}"></script>
   @stack('js')

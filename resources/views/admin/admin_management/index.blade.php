@@ -81,8 +81,13 @@
                 order: [
                     [0, 'desc']
                 ],
-                lengthMenu: [1,5, 10, 15]
-            });
+                lengthMenu: [1,5, 10, 15],
+				layout: {
+					topStart: {
+						buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+					}
+				}
+			});
         });
     </script>
 @endpush
