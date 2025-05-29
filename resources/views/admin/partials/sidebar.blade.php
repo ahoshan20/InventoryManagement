@@ -35,6 +35,12 @@
             <p>{{__('Admin Management')}}</p>
           </a>
         </li>
+        <li class="nav-item {{$page_slug == 'admin' ? 'active' : ''}}">
+          <a href="{{route('customer.index')}}">
+          <i class="fab fa-readme"></i>
+            <p>{{__('Customer Management')}}</p>
+          </a>
+        </li>
         <!-- <li class="nav-item">
           <a data-bs-toggle="collapse" href="#base">
             <i class="fas fa-layer-group"></i>

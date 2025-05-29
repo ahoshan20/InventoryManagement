@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminManagementController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\CustomerManagement\CustomerController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -21,3 +22,7 @@ Route::group(['middleware' => 'auth', 'prefix' => 'admin-dashboard'], function (
     // Admin Mabagement Route
     Route::get('/admin/status/{id}',[AdminManagementController::class,'status'])->name('admin.status');
 });
+
+// Customer Routes
+Route::resource('/customer', CustomerController::class);
+Route::get('customer/status/{customer}', [CustomerController::class, 'status'])->name('customer.status');
